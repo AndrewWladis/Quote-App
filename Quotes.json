@@ -25,15 +25,11 @@
             "author": "The Deep"
         },
         {
-            "quote": ["ROSEBUD"],
-            "author": "Charles Foster Kane"
-        },
-        {
             "quote": ["What will you have after 500 years?", "Do you really think you can stop me?"],
             "author": "Omni-Man"
         },
         {
-            "quote": ["Last chance to look at me Hector", "I hide in plain sight, same as you."],
+            "quote": ["Last chance to look at me Hector", "I hide in plain sight, same as you.", "Never make the same mistake twice.", "I don't think we are alike at all Mr. White."],
             "author": "Gustavo Fring"
         },
         {
@@ -53,8 +49,16 @@
             "author": "Walter White"
         }, 
         {
-            "quote": ["Fear is a tool", "I'm vengeance", "I'm Batman"],
+            "quote": ["Fear is a tool", "I'm vengeance", "I'm Batman", "They think I am hiding in the shadows, but I am the shadows.", "What I'm doing is my family's legacy."],
             "author": "Batman"
+        },
+        {
+            "quote": ["When I left you I was but the learner, now I am the master.", "I am altering the deal, pray I do not alter it any further.", "Release your anger. Only your hatred can destroy me", "You cannot run.", "I am what you made me.", "The years have made you weak.", "If you're not with me, then you're my enemy!"],
+            "author": "Darth Vader"
+        },
+        {
+            "quote": ["This is your life, and it's ending one minute at a time.", "Let's evolve. Let the chips fall where they may.", "Without pain, without sacrifice, we would have nothing."],
+            "author": "Tyler Durden"
         }
     ]
 }
