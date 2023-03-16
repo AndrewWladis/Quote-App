@@ -1,9 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Modal, Switch } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, {useState} from 'react';
+import { Ionicons } from '@expo/vector-icons';
 
 const quotes = require('./Quotes.json');
+
+const themecolors = {
+  batman: ['#f2de02', '#0f0f0f'],
+  boys: ['#db2c3d', '#2e4ad9'],
+  breakingbad: ['#2a6123', '#6acbe6'],
+  starwars: ['#359edb', '#d6c16d'],
+}
 
 const generateColor = () => {
   const randomColor = Math.floor(Math.random() * 16777215)
@@ -18,21 +26,38 @@ const randomProperty = () => {
 };
 
 export default function App() {
-
   const [color, setColor] = useState([generateColor(), generateColor()]);
   const [quote, setQuote] = useState(randomProperty());
+  const [modalVisible, setModalVisible] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(false);
 
-  const onPress = () => {
-    setQuote(randomProperty())
-    setColor([generateColor(), generateColor()])
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+  const next = () => {
+    setQuote(randomProperty());
+    setColor([generateColor(), generateColor()]);
   }
 
   return (
     <LinearGradient colors={color} style={styles.linearGradient}>
-      <TouchableOpacity style={styles.clicker} onPress={onPress}>
+      <Modal style={styles.modal} animationType="fade" transparent={true} visible={modalVisible}>
+        <View style={styles.modalInfo}>
+        <Switch
+        trackColor={{false: '#767577', true: '#36f569'}}
+        thumbColor={'#f4f3f4'}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+        />
+        </View>
+      </Modal>
+      <TouchableOpacity style={styles.clicker} onPress={next}>
         <Text style={styles.quote}>"{quote.quote[Math.floor(Math.random() * quote.quote.length)]}"</Text>
         <Text style={styles.author}>- {quote.author}</Text>
       </TouchableOpacity>
+      <View style={styles.control}>
+        <Ionicons onPress={() => {setModalVisible(true)}} name="ios-settings-sharp" size={50} color="white" />
+      </View>
       <StatusBar style="auto" />
     </LinearGradient>
   );
@@ -41,10 +66,12 @@ export default function App() {
 const styles = StyleSheet.create({
   linearGradient: {
     flex: 1,
-    alignItems: 'center',
+    flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   quote: {
+    marginTop: 10,
     color: "white",
     fontSize: 30,
     fontWeight: 'bold',
@@ -56,10 +83,28 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   clicker: {
-    flex: 1,
+    flex: 6,
     justifyContent: 'center',
-    flexDirection: "column",
+    flexDirection: 'column',
     alignItems: 'center',
     margin: 10
+  },
+  control: {
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    flexDirection: 'row',
+    flex: 1,
+  },
+  modal: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }, 
+  modalInfo: {
+    flex: 1,
+    backgroundColor: 'white',
+    opacity: 0.97,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
