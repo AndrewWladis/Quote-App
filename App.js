@@ -25,17 +25,28 @@ const randomProperty = () => {
   return quotes.quotes[keys[ keys.length * Math.random() << 0]];
 };
 
+class quoteobj {
+  constructor(quotecurrent, authorcurrent) {
+    this.quotecurrent = quotecurrent;
+    this.authorcurrent = authorcurrent;
+  }
+}
+
 export default function App() {
+  let qnew = randomProperty();
   const [color, setColor] = useState([generateColor(), generateColor()]);
-  const [quote, setQuote] = useState(randomProperty());
+  const [quote, setQuote] = useState(new quoteobj(qnew.quote[Math.floor(Math.random() * qnew.quote.length)], qnew.author));
   const [modalVisible, setModalVisible] = useState(false);
   const [isEnabled, setIsEnabled] = useState(false);
 
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
   const next = () => {
-    setQuote(randomProperty());
-    setColor([generateColor(), generateColor()]);
+    if (!modalVisible) {
+      let newQuote = randomProperty();
+      setQuote(new quoteobj(newQuote.quote[Math.floor(Math.random() * newQuote.quote.length)], newQuote.author));
+      setColor([generateColor(), generateColor()]);
+    }
   }
 
   return (
@@ -52,8 +63,8 @@ export default function App() {
         </View>
       </Modal>
       <TouchableOpacity style={styles.clicker} onPress={next}>
-        <Text style={styles.quote}>"{quote.quote[Math.floor(Math.random() * quote.quote.length)]}"</Text>
-        <Text style={styles.author}>- {quote.author}</Text>
+        <Text style={styles.quote}>"{quote.quotecurrent}"</Text>
+        <Text style={styles.author}>- {quote.authorcurrent}</Text>
       </TouchableOpacity>
       <View style={styles.control}>
         <Ionicons onPress={() => {setModalVisible(true)}} name="ios-settings-sharp" size={50} color="white" />
