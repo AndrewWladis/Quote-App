@@ -1,17 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TouchableOpacity, View, Modal, Switch } from 'react-native';
+import { Text, TouchableOpacity, View, Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, {useState} from 'react';
 import { Ionicons } from '@expo/vector-icons';
+import ModalContent from './ModalContent';
+import Styles from './Styles';
 
 const quotes = require('./Quotes.json');
-
-const themecolors = {
-  batman: ['#f2de02', '#0f0f0f'],
-  boys: ['#db2c3d', '#2e4ad9'],
-  breakingbad: ['#2a6123', '#6acbe6'],
-  starwars: ['#359edb', '#d6c16d'],
-}
 
 const generateColor = () => {
   const randomColor = Math.floor(Math.random() * 16777215)
@@ -37,85 +32,50 @@ export default function App() {
   const [color, setColor] = useState([generateColor(), generateColor()]);
   const [quote, setQuote] = useState(new quoteobj(qnew.quote[Math.floor(Math.random() * qnew.quote.length)], qnew.author));
   const [modalVisible, setModalVisible] = useState(false);
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [filter, setFilter] = useState('All');
 
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  function setQuoteToFilter() {
+    let quoteobject = {
+      quotecurrent: 'bruh',
+      authorcurrent: 'bigchungus'
+    };
+    while (!filter.characters.includes(quoteobject.authorcurrent)) {
+      let newQuote = randomProperty();
+      quoteobject = new quoteobj(newQuote.quote[Math.floor(Math.random() * newQuote.quote.length)], newQuote.author);
+    }
+    setColor(filter.colors);
+    setQuote(quoteobject);
+  }
 
   const next = () => {
     if (!modalVisible) {
-      let newQuote = randomProperty();
-      setQuote(new quoteobj(newQuote.quote[Math.floor(Math.random() * newQuote.quote.length)], newQuote.author));
-      setColor([generateColor(), generateColor()]);
+      if (filter === 'All') {
+        let newQuote = randomProperty();
+        let quoteobject = new quoteobj(newQuote.quote[Math.floor(Math.random() * newQuote.quote.length)], newQuote.author);
+        setQuote(quoteobject);
+        let colorsUsed = [generateColor(), generateColor()];
+        setColor(colorsUsed);
+      } else {
+        setQuoteToFilter(filter)
+      }
     }
   }
 
   return (
-    <LinearGradient colors={color} style={styles.linearGradient}>
-      <Modal style={styles.modal} animationType="fade" transparent={true} visible={modalVisible}>
-        <View style={styles.modalInfo}>
-        <Switch
-        trackColor={{false: '#767577', true: '#36f569'}}
-        thumbColor={'#f4f3f4'}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={toggleSwitch}
-        value={isEnabled}
-        />
+    <LinearGradient colors={color} style={Styles.linearGradient}>
+      <Modal style={Styles.modal} animationType="fade" transparent={true} visible={modalVisible}>
+        <View style={Styles.modalContent}>
+          <ModalContent changeFilter={(item) => {setFilter(item)}} onPress={() => {setModalVisible(false)}} />
         </View>
       </Modal>
-      <TouchableOpacity style={styles.clicker} onPress={next}>
-        <Text style={styles.quote}>"{quote.quotecurrent}"</Text>
-        <Text style={styles.author}>- {quote.authorcurrent}</Text>
+      <TouchableOpacity style={Styles.clicker} onPress={next}>
+        <Text style={Styles.quote}>"{quote.quotecurrent}"</Text>
+        <Text style={Styles.author}>- {quote.authorcurrent}</Text>
       </TouchableOpacity>
-      <View style={styles.control}>
+      <View style={Styles.control}>
         <Ionicons onPress={() => {setModalVisible(true)}} name="ios-settings-sharp" size={50} color="white" />
       </View>
       <StatusBar style="auto" />
     </LinearGradient>
   );
 }
-
-const styles = StyleSheet.create({
-  linearGradient: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  quote: {
-    marginTop: 10,
-    color: "white",
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  author: {
-    color: "white",
-    fontSize: 25,
-    textAlign: 'center',
-  },
-  clicker: {
-    flex: 6,
-    justifyContent: 'center',
-    flexDirection: 'column',
-    alignItems: 'center',
-    margin: 10
-  },
-  control: {
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    flexDirection: 'row',
-    flex: 1,
-  },
-  modal: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }, 
-  modalInfo: {
-    flex: 1,
-    backgroundColor: 'white',
-    opacity: 0.97,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-});

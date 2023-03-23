@@ -17,7 +17,7 @@
     "npm": "^9.6.1",
     "react": "18.2.0",
     "react-native": "0.71.3",
-    "react-native-vector-icons": "^9.2.0"
+    "react-native-select-dropdown": "^3.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
