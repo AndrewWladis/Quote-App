@@ -16,7 +16,7 @@
     "i": "^0.3.7",
     "npm": "^9.6.1",
     "react": "18.2.0",
-    "react-native": "0.71.3",
+    "react-native": "0.71.4",
     "react-native-select-dropdown": "^3.3.0"
   },
   "devDependencies": {
