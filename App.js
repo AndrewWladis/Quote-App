@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Text, TouchableOpacity, View, Modal, Share } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, {useState} from 'react';
-import { Ionicons, Fontisto } from '@expo/vector-icons';
+import { Ionicons, Fontisto, AntDesign } from '@expo/vector-icons';
 import ModalContent from './ModalContent';
 import Styles from './Styles';
 
@@ -29,9 +29,11 @@ class quoteobj {
 
 export default function App() {
   let qnew = randomProperty();
-  const [color, setColor] = useState([generateColor(), generateColor()]);
+  let newcolorgener = [generateColor(), generateColor()]
+  const [color, setColor] = useState(newcolorgener);
   const [quote, setQuote] = useState(new quoteobj(qnew.quote[Math.floor(Math.random() * qnew.quote.length)], qnew.author));
   const [modalVisible, setModalVisible] = useState(false);
+  const [last, setLast] = useState([quote.quotecurrent, quote.authorcurrent, color])
   const [filter, setFilter] = useState('All');
 
   function setQuoteToFilter() {
@@ -46,9 +48,10 @@ export default function App() {
     setColor(filter.colors);
     setQuote(quoteobject);
   }
-
+  
   const next = () => {
     if (!modalVisible) {
+      setLast([quote.quotecurrent, quote.authorcurrent, color]);
       if (filter === 'All') {
         let newQuote = randomProperty();
         let quoteobject = new quoteobj(newQuote.quote[Math.floor(Math.random() * newQuote.quote.length)], newQuote.author);
@@ -58,6 +61,13 @@ export default function App() {
       } else {
         setQuoteToFilter(filter)
       }
+    }
+  }
+
+  const back = () => {
+    if (!modalVisible && newcolorgener != color) {
+      setQuote(new quoteobj(last[0], last[1]));
+      setColor(last[2]);
     }
   }
 
@@ -96,6 +106,7 @@ export default function App() {
         <Text style={Styles.author}>- {quote.authorcurrent}</Text>
       </TouchableOpacity>
       <View style={Styles.control}>
+        <AntDesign onPress={back} name="caretleft" size={50} color="white" />
         <Ionicons onPress={() => {setModalVisible(true)}} name="ios-settings-sharp" size={50} color="white" />
         <Fontisto onPress={() => {onShare()}} name="share-a" size={47} color="white" />
       </View>
