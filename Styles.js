@@ -34,9 +34,10 @@ const Styles = StyleSheet.create({
     },
     dropdown: {
       borderRadius: 5,
+      width: 300
     },
     dropdowntext: {
-      fontSize: 20
+      fontSize: 30
     },
     modal: {
       flex: 1,
@@ -50,7 +51,7 @@ const Styles = StyleSheet.create({
     },
     modalInfo: {
       width: 350,
-      height: 500,
+      height: 250,
       backgroundColor: '#fafafa',
       justifyContent: 'space-evenly',
       alignItems: 'center',

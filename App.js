@@ -68,6 +68,7 @@ export default function App() {
         `"${quote.quotecurrent}" - ${quote.authorcurrent}
         
         from WQuotes`,
+        //put link to app store here later
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
