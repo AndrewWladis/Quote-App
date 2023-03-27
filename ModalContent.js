@@ -10,10 +10,6 @@ function ModalContent(props) {
       colors: ['#f2de02', '#0f0f0f'],
       characters: ['Batman', 'Joker']
     },
-    boys: {
-      colors: ['#db2c3d', '#2e4ad9'],
-      characters: ['Homelander', 'The Deep']
-    },
     breakingbad: {
       colors: ['#2a6123', '#6acbe6'],
       characters: ['Walter White', 'Saul Goodman', 'Gustavo Fring']
@@ -21,6 +17,10 @@ function ModalContent(props) {
     starwars: {
       colors: ['#359edb', '#d6c16d'],
       characters: ['Obi-Wan Kenobi', 'Darth Vader']
+    },
+    marvel: {
+      colors: ['#fc3714', '#fc5538'],
+      characters: ['Iron Man', 'Captain America', 'Spider-Man']
     }
   }
 
@@ -34,7 +34,7 @@ function ModalContent(props) {
         buttonStyle={Styles.dropdown}
         buttonTextStyle={Styles.dropdowntext}
         defaultButtonText="Filter"
-        data={['All', 'Only Breaking Bad', 'Only Batman', 'Only The Boys', 'Only Star Wars']}
+        data={['All', 'Only Breaking Bad', 'Only Batman', 'Only Marvel', 'Only Star Wars']}
         onSelect={(selectedItem, index) => {
           if (index === 0) {
             props.changeFilter('All')
@@ -43,7 +43,7 @@ function ModalContent(props) {
           } else if (index === 2) {
             props.changeFilter(themes.batman)
           } else if (index === 3) {
-            props.changeFilter(themes.boys)
+            props.changeFilter(themes.marvel)
           } else if (index === 4) {
             props.changeFilter(themes.starwars)
           }

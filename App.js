@@ -43,6 +43,9 @@ export default function App() {
     };
     while (!filter.characters.includes(quoteobject.authorcurrent)) {
       let newQuote = randomProperty();
+      while (newQuote.author === quote.authorcurrent) {
+        newQuote = randomProperty();
+      }
       quoteobject = new quoteobj(newQuote.quote[Math.floor(Math.random() * newQuote.quote.length)], newQuote.author);
     }
     setColor(filter.colors);
@@ -51,10 +54,17 @@ export default function App() {
   
   const next = () => {
     if (!modalVisible) {
+      let quoteobject = {
+        quotecurrent: 'bruh',
+        authorcurrent: 'bigchungus'
+      };
       setLast([quote.quotecurrent, quote.authorcurrent, color]);
       if (filter === 'All') {
         let newQuote = randomProperty();
-        let quoteobject = new quoteobj(newQuote.quote[Math.floor(Math.random() * newQuote.quote.length)], newQuote.author);
+      while (newQuote.author === quote.authorcurrent) {
+        newQuote = randomProperty();
+      }
+      quoteobject = new quoteobj(newQuote.quote[Math.floor(Math.random() * newQuote.quote.length)], newQuote.author);
         setQuote(quoteobject);
         let colorsUsed = [generateColor(), generateColor()];
         setColor(colorsUsed);
@@ -110,7 +120,7 @@ export default function App() {
         <Ionicons onPress={() => {setModalVisible(true)}} name="ios-settings-sharp" size={50} color="white" />
         <Fontisto onPress={() => {onShare()}} name="share-a" size={47} color="white" />
       </View>
-      <StatusBar style="auto" />
+      <StatusBar style='auto' />
     </LinearGradient>
   );
 }

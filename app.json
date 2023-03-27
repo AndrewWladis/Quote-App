@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "QuoteApp",
-    "slug": "QuoteApp",
-    "version": "1.0.0",
+    "name": "WQuotes",
+    "slug": "WQuotes",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.andywladis.WQuotes"
     },
     "android": {
       "adaptiveIcon": {
@@ -25,6 +26,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9275115c-6ada-459f-b86c-b2413c035cbe"
+      }
     }
   }
 }

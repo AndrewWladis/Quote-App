@@ -13,10 +13,6 @@
             "author": "Homelander"
         },
         {
-            "quote": ["Formidable intellect!"],
-            "author": "The Deep"
-        },
-        {
             "quote": ["Live life on your own terms", "I did it for me", "I am the danger", "I am the one who knocks", "Say my name", "I won", "Stay out of my territory", "I'm in the empire business", "Tread lightly", "Today is the first day of the rest of your life.", "Nothing stops this train. Nothing."],
             "author": "Walter White"
         },
@@ -37,7 +33,7 @@
             "author": "Darth Vader"
         },
         {
-            "quote": ["I'M PICKLE RICK!", "What, so everyone's supposed to sleep every single night now?"],
+            "quote": ["I'M PICKLE RICK!"],
             "author": "Rick Sanchez"
         },
         {
@@ -59,6 +55,30 @@
         {
             "quote": ["This is your life, and it's ending one minute at a time.", "Let's evolve. Let the chips fall where they may.", "Without pain, without sacrifice, we would have nothing.", "First rule of Fight Club, don't talk about Fight Club", "With insomnia, nothing is real", "We are the middle children of history", "I'm Jack's smirking revenge", "I'm Jack's complete lack of suprise"],
             "author": "Tyler Durden"
+        },
+        {
+            "quote": ["Freedom is the right of all sentient beings", "Autobots, roll out!"],
+            "author": "Optimus Prime"
+        },
+        {
+            "quote": ["Ogres are like onions.", "What are you doing in my swamp!?"],
+            "author": "Shrek"
+        },
+        {
+            "quote": ["I'm Iron Man.", "No amount of money ever bought a second of time."],
+            "author": "Iron Man"
+        },
+        {
+            "quote": ["I can do this all day.", "On your left."],
+            "author": "Captain America"
+        },
+        {
+            "quote": ["It's not the years, honey. It's the mileage."],
+            "author": "Indiana Jones"
+        },
+        {
+            "quote": ["With great power, comes great responsibility", "This is my gift, my curse.", "I missed the part where that's my problem."],
+            "author": "Spider-Man"
         }
     ]
 }
